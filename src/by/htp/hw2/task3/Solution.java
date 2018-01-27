@@ -31,6 +31,7 @@ public class Solution {
     }
 
     //Чтение сканнером числа(int) с консоли с "защитой от дураков".
+    @SuppressWarnings("all")
     private static int readInt() {
 
         Scanner scanner = new Scanner(System.in);

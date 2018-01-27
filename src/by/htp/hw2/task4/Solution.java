@@ -29,7 +29,7 @@ public class Solution {
         }
     }
 
-    //Чтение сканнером числа(int) с консоли с "защитой от дураков".
+    //Чтение сканнером числа(double) с консоли с "защитой от дураков".
     @SuppressWarnings("all")
     private static double readDouble() {
 
