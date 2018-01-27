@@ -30,7 +30,8 @@ public class Solution {
         }
     }
 
-    private static int readInt() {  //Чтение сканнером числа(int) с консоли с "защитой от дураков".
+    //Чтение сканнером числа(int) с консоли с "защитой от дураков".
+    private static int readInt() {
 
         Scanner scanner = new Scanner(System.in);
 
