@@ -1,9 +1,9 @@
 
-*.class
+out/production/JD1/by/htp/hw2/task2/Solution.class
 *.xml
 *.xml
+*.xml
+*.iml
 *.class
-out/production/JD1/by/htp/hw2/task2/Solution.class
-out/production/JD1/by/htp/hw2/task2/Solution.class
-*.class
-.idea/workspace.xml
+src/by/htp/hw2/task1/Solution.java
+src/by/htp/hw2/task2/Solution.java
