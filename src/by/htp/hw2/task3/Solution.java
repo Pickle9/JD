@@ -1,24 +1,50 @@
 package by.htp.hw2.task3;
 
+/* Программа вводит два число "a" и "b", если а > b, то программа вводит третье число "с" и находит сумму b + с.
+  Если a = b, то программа печатает слово "Конец". Если a < b, то программа вводит третье число "с", находит сумму a + b + c,
+  выводит на экран сумму a + b + c и слова "Новый год!".*/
 
+import java.util.Scanner;
 
 public class Solution {
+
     public static void main(String[] args) {
-        double a = Math.random() * 10;
-        double b = Math.random() * 10;
-        double c = 0;
-        double sum = 0;
+        int a;
+        int b;
+        int c;
+
+        a = readInt();
+        b = readInt();
 
         if (a > b) {
-            c = Math.random() * 10;
-            sum = b + c;
+            c = readInt();
+            System.out.println("\n" + b + c);
         }
 
         if (a == b)
-            System.out.println("Конец");
+            System.out.println("\nКонец");
 
         if (a < b) {
-            System.out.println(a + b + c + " Новый год!");
+            c = readInt();
+            System.out.println("\n" + (a + b + c) + " Новый год!");
         }
+    }
+
+    private static int readInt() {  //Чтение сканнером числа(int) с консоли с "защитой от дураков".
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Введите число");
+
+        while (scanner.hasNext()) {
+            if (scanner.hasNextInt()) {
+                return scanner.nextInt();
+            } else {
+                System.out.println("Неверное значение, попробуйте ещё раз.");
+                scanner.next();
+            }
+        }
+
+        return 0;
     }
 }
