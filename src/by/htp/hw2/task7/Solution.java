@@ -1,10 +1,16 @@
 package by.htp.hw2.task7;
 
+/* Вычислить значение выражения по формуле (все переменные принимают действительные значения):
+*   a   b     a * b - c
+*   - * -  -  ---------
+*   c   d       c * d    */
+
 import java.util.Scanner;
 
 public class Solution {
 
     public static void main(String[] args) {
+
         double a = readDouble();
         double b = readDouble();
         double c = readDouble();
