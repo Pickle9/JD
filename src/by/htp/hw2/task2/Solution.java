@@ -2,8 +2,7 @@ package by.htp.hw2.task2;
 
 import java.util.Scanner;
 
-/*Программа запрашивает у пользователя a, b, c, вычислить значение выражения a^2-(b-c)^2+ln(b^(2)+1).
-* */
+/* Программа запрашивает у пользователя a, b, c, вычислить значение выражения a^2-(b-c)^2+ln(b^(2)+1).*/
 
 public class Solution {
 
@@ -28,6 +27,8 @@ public class Solution {
         System.out.println("Результат: " + res);
     }
 
+    //Чтение сканнером числа(int) с консоли с "защитой от дураков".
+    @SuppressWarnings("all")
     private static double readDouble() {
 
         Scanner scanner = new Scanner(System.in);
@@ -44,4 +45,3 @@ public class Solution {
         return 0;
     }
 }
-
