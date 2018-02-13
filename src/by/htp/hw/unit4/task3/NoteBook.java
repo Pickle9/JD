@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class NoteBook {
 
+    //singleton
     private static NoteBook noteBook;
 
     static {
@@ -21,6 +22,7 @@ public class NoteBook {
     }
 
 
+    //logic
     private ArrayList<Note> notes = new ArrayList<>();
     private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -39,7 +41,7 @@ public class NoteBook {
         }
     }
 
-    //пока не работает
+    //TODO пока не работает
     public void deleteNote() {
         System.out.println("Please, enter the information about a removable record\n " +
                 "Name Country Telephone");
@@ -82,6 +84,7 @@ public class NoteBook {
             System.out.println(n.toString());
         }
     }
+
 
 
     public static void main(String[] args) throws IOException {
