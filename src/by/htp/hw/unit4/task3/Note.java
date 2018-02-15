@@ -36,6 +36,7 @@ public class Note {
         this.telephone = telephone;
     }
 
+
     public Note findNote(String line) {
         if (this.name.equals(line) || this.country.equals(line) || this.telephone.equals(line))
             return this;
