@@ -1,4 +1,4 @@
-package unit4.task3;
+package by.htp.hw.unit4.task3;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,12 +31,3 @@ public class NoteBook {
         this.notes = notes;
     }
 }
-
-
-
-
-
-
-
-
-

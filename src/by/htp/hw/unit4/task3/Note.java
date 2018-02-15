@@ -1,4 +1,4 @@
-package unit4.task3;
+package by.htp.hw.unit4.task3;
 
 public class Note {
 
