@@ -1,5 +1,4 @@
-package by.htp.hw.unit4.task3;
-
+package unit4.task3;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -26,7 +25,23 @@ public class Logic {
                 "Name Country Telephone");
 
         String[] data = reader.readLine().split(" ");
-        noteBook.getNotes().remove(new Note(data[0], data[1], data[2]));
+        Note note = new Note(data[0], data[1], data[2]);
+        int index = -1;
+
+        for (int i = 0; i < noteBook.getNotes().size(); i++) {
+            if (noteBook.getNotes().get(i).equals(note)) {
+                index = i;
+                break;
+            }
+        }
+
+        if (index == -1) {
+            System.out.println("No matches.");
+            return;
+        }
+
+        noteBook.getNotes().remove(index);
+        System.out.println("Note has been removed.");
     }
 
 
