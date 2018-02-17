@@ -19,7 +19,6 @@ public class Logic {
     }
 
 
-    //TODO пока не работает
     public static void deleteNote() throws IOException {
         System.out.println("Please, enter the information about a removable record\n " +
                 "Name Country Telephone");
