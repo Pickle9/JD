@@ -1,42 +1,49 @@
 package by.htp.hw.nb.entity;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class Note {
-	private static int id;
-	private Calendar date;// GregorianCalendar
-	private String text;
 
-	public Note(Calendar date, String text) {
-		id++;
-		this.date = date;
-		this.text = text;
-	}
+    private int idUser;
+    private Calendar date;// GregorianCalendar
+    private String text;
 
-	public int getId() {
-		return id;
-	}
+    public Note() {
+        super();
+    }
 
-	public Calendar getDate() {
-		return date;
-	}
+    public Note(int idUser, String text, Calendar date) {
+        super();
+        this.idUser = idUser;
+        this.date = date;
+        this.text = text;
+    }
 
-	public void setDate(Calendar date) {
-		this.date = date;
-	}
+    public int getIdUser() {
+        return idUser;
+    }
 
-	public String getText() {
-		return text;
-	}
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
+    }
 
-	public void setText(String text) {
-		this.text = text;
-	}
+    public Calendar getDate() {
+        return date;
+    }
 
-	@Override
-	public String toString() {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
-		return id + " " + dateFormat.format(date.getTime()) + " " + text;
-	}
+    public void setDate(Calendar date) {
+        this.date = date;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    // equals, hashCode
+
+    // toString
 }

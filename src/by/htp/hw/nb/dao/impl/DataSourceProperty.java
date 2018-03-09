@@ -2,12 +2,8 @@ package by.htp.hw.nb.dao.impl;
 
 public final class DataSourceProperty {
 
-    // Файл со списком зареганых пользователей.
-    public static final String USER_DATA_FILE = "src/by/htp/hw/nb/dao/data/users.txt";
+    public static final String USER_DATA_FILE = "users.txt";
+    public static final String USER_NOTE_BASE_SOURCE_NAME = "_notes.txt";
 
-    // Путь для созранения файлов пользователей с "нотами".
-    public static final String USER_NOTES_ROOT_PATH = "src/by/htp/hw/nb/dao/data/";
-
-    private DataSourceProperty() {
-    }
+    private DataSourceProperty(){}
 }

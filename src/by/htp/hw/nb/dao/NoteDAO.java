@@ -1,5 +1,6 @@
 package by.htp.hw.nb.dao;
 
+import by.htp.hw.nb.dao.exception.DAOException;
 import by.htp.hw.nb.entity.Note;
 
 import java.io.IOException;
@@ -8,11 +9,8 @@ import java.util.List;
 
 public interface NoteDAO {
 
-    void create(Note note) throws IOException;
+    void add(Note note) throws DAOException;
+    List<Note> findWithContent(int id, String text) throws DAOException;
+    //void remove(int id) throws DAOException;
 
-    void remove(int id) throws IOException;
-
-    void edit(int id, String newText, int newYear)throws IOException;
-
-    List<Note> find(Calendar date) throws IOException;
 }

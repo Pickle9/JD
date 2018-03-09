@@ -1,20 +1,22 @@
 package by.htp.hw.nb.controller.impl;
 
 import by.htp.hw.nb.controller.Command;
-import by.htp.hw.nb.controller.Responses;
 import by.htp.hw.nb.service.NoteService;
 import by.htp.hw.nb.service.ServiceFactory;
+import by.htp.hw.nb.service.exception.ServiceException;
 
-import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class EditNoteImpl implements Command {
 
     @Override
-    public Responses execute(String[] params) throws IOException {
+    public String execute(String[] params) {
 
         String newText = "";
         int id = -1;
-        int newYear = 0;
+        Calendar newDate = Calendar.getInstance();
 
         String[] elements;
         for (int i = 1; i < params.length; i++) {
@@ -28,20 +30,31 @@ public class EditNoteImpl implements Command {
                 case "text":
                     newText = elements[1];
                     break;
-                case "year":
-                    newYear = Integer.parseInt(elements[1]);
+                case "year": {
+                    try {
+                        newDate.setTime(new SimpleDateFormat("yyyy").parse(elements[1]));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         }
 
         ServiceFactory factory = ServiceFactory.getInstance();
         NoteService noteService = factory.getNoteService();
 
-        if (id == -1)
-            return Responses.NOT_VALID_ID;
+        String responce;
 
-        noteService.edit(id, newText, newYear);
+        try {
+            noteService.edit(id, newText, newDate);
+            responce = "0 OK";
+        } catch (ServiceException e) {
+            // log
+            e.printStackTrace();
+            responce = "1 Error";
+        }
 
-        return Responses.OK;
+        return responce;
     }
 
 }

@@ -1,41 +1,45 @@
 package by.htp.hw.nb.dao.impl;
 
 import by.htp.hw.nb.dao.UserDAO;
+import by.htp.hw.nb.dao.exception.DAOException;
 import by.htp.hw.nb.entity.User;
-import by.htp.hw.nb.entity.UserInfo;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 
 public class FileUserDAO implements UserDAO {
 
     @Override
-    public boolean signIn(User user) {
+    public boolean logination(User user) throws DAOException {
 
-        /*try {
-            Files.write(Paths.get(DataSourceProperty.USER_DATA_FILE), (user.toString() + System.getProperty("line.separator")).getBytes(), StandardOpenOption.APPEND);
-        } catch (NoSuchFileException e) {
-            Files.write(Files.createFile(Paths.get(DataSourceProperty.USER_DATA_FILE)), (user.toString() + System.getProperty("line.separator")).getBytes(), StandardOpenOption.APPEND);
-        }*/
+        // Предположим, этот метод отвечает за проверку логина (записывать в файл он ничё не будет).
+        // Заодно предположим, что юзеры в файле хранятся в виде "ЛОГИН = ПАРОЛЬ"
+
+        BufferedReader reader;
+
+        try {
+
+            reader = new BufferedReader(new FileReader(DataSourceProperty.USER_DATA_FILE));
+            ArrayList<String> users = new ArrayList<>();
+
+            while (reader.ready()) {
+                users.add(reader.readLine());
+            }
+
+            for (String s : users) {
+                String[] arr = s.split(" = ");
+
+                if (user.getNickName().equals(arr[0]) && user.getHashPassword().equals(arr[1])) {
+                    return true;
+                }
+            }
+
+        } catch (IOException e) {
+            throw new DAOException("Logination error!", e);
+        }
 
         return false;
-    }
-
-    @Override
-    public boolean singUp(User user) {
-        return false;
-    }
-
-    @Override
-    public void editPassword(String oldPassword, String newPassword) {
-
-    }
-
-    @Override
-    public void editUserInfo(int id, UserInfo userInfo) {
-
     }
 }

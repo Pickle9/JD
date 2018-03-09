@@ -1,28 +1,21 @@
 package by.htp.hw.nb.controller;
 
-import by.htp.hw.nb.entity.Note;
-import by.htp.hw.nb.service.NoteService;
-import by.htp.hw.nb.service.ServiceFactory;
-
-import java.io.IOException;
-
 public class Controller {
 
     private final CommandProvider commandProvider = new CommandProvider();
-
     //response
-    public Responses doAction(String request) throws IOException{
+    public String doAction(String request){
 
         String[] params = request.split("|");
 
         String commandName = params[0].trim();
 
         Command command = commandProvider.getCommand(commandName);
-        Responses response = command.execute(params);
+        String response = command.execute(params);
 
         return response;
-
     }
+
 }
 
 // Controller controller = new Controller();
