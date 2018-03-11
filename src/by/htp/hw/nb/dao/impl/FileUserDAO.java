@@ -3,6 +3,7 @@ package by.htp.hw.nb.dao.impl;
 import by.htp.hw.nb.dao.UserDAO;
 import by.htp.hw.nb.dao.exception.DAOException;
 import by.htp.hw.nb.entity.User;
+import by.htp.hw.nb.entity.UserInfo;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 public class FileUserDAO implements UserDAO {
 
     @Override
-    public boolean logination(User user) throws DAOException {
+    public boolean logIn(User user) throws DAOException {
 
         // Предположим, этот метод отвечает за проверку логина (записывать в файл он ничё не будет).
         // Заодно предположим, что юзеры в файле хранятся в виде "ЛОГИН = ПАРОЛЬ"
@@ -37,9 +38,24 @@ public class FileUserDAO implements UserDAO {
             }
 
         } catch (IOException e) {
-            throw new DAOException("Logination error!", e);
+            throw new DAOException("LogIn error!", e);
         }
 
         return false;
+    }
+
+    @Override
+    public boolean logOut(User user) throws DAOException {
+        return false;
+    }
+
+    @Override
+    public void edit(int id, UserInfo user) throws DAOException {
+
+    }
+
+    @Override
+    public void addUser(User user) throws DAOException {
+
     }
 }

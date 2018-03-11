@@ -1,22 +1,25 @@
 package by.htp.hw.nb.entity;
 
-import java.util.Calendar;
+import java.text.SimpleDateFormat;
+import java.util.GregorianCalendar;
 
 public class Note {
 
     private int idUser;
-    private Calendar date;// GregorianCalendar
+    private String date;
     private String text;
 
     public Note() {
         super();
     }
 
-    public Note(int idUser, String text, Calendar date) {
+    public Note(int idUser, String text) {
         super();
         this.idUser = idUser;
-        this.date = date;
         this.text = text;
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        this.date = dateFormat.format(new GregorianCalendar().getTime());
     }
 
     public int getIdUser() {
@@ -27,11 +30,11 @@ public class Note {
         this.idUser = idUser;
     }
 
-    public Calendar getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Calendar date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -43,7 +46,32 @@ public class Note {
         this.text = text;
     }
 
-    // equals, hashCode
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-    // toString
+        Note note = (Note) o;
+
+        if (idUser != note.idUser) return false;
+        if (date != null ? !date.equals(note.date) : note.date != null) return false;
+        return text != null ? text.equals(note.text) : note.text == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = idUser;
+        result = 31 * result + (date != null ? date.hashCode() : 0);
+        result = 31 * result + (text != null ? text.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%o %s %s", idUser, date, text);
+    }
+
+    public String toStringWithoutIdUser() {
+        return String.format("%s %s", date, text);
+    }
 }
