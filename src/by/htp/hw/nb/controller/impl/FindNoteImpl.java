@@ -1,23 +1,26 @@
 package by.htp.hw.nb.controller.impl;
 
 import by.htp.hw.nb.controller.Command;
-import by.htp.hw.nb.service.NoteService;
 import by.htp.hw.nb.service.ServiceFactory;
 import by.htp.hw.nb.service.exception.ServiceException;
 
 public class FindNoteImpl implements Command {
+
+    /**
+     * @param params [FIND_NOTE], [idUser=..], [text=..]
+     */
+    @SuppressWarnings("all")
     @Override
     public String execute(String[] params) {
-        String text = "";
+        String text = null;
         int id = -1;
 
         String[] elements;
-        for (int i = 1; i < params.length; i++) {
-            elements = params[i].split("=");
-            elements[1] = elements[1].trim();
+        for (String s : params) {
+            elements = s.split("=");
 
-            switch (elements[0].trim()) {
-                case "id":
+            switch (elements[0]) {
+                case "idUser":
                     id = Integer.parseInt(elements[1]);
                     break;
                 case "text":
@@ -25,20 +28,19 @@ public class FindNoteImpl implements Command {
             }
         }
 
-        ServiceFactory factory = ServiceFactory.getInstance();
-        NoteService noteService = factory.getNoteService();
+        if (text == null || id == -1)
+            return "1 ERROR";
 
-        String responce;
-
+        String response;
         try {
-            noteService.find(id, text);
-            responce = "0 OK";
+            ServiceFactory.getInstance().getNoteService().findWithContent(id, text);
+            response = "0 OK";
         } catch (ServiceException e) {
             // log
             e.printStackTrace();
-            responce = "1 Error";
+            response = "1 ERROR";
         }
 
-        return responce;
+        return response;
     }
 }

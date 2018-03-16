@@ -5,16 +5,15 @@ import by.htp.hw.nb.entity.User;
 import by.htp.hw.nb.service.ServiceFactory;
 import by.htp.hw.nb.service.exception.ServiceException;
 
-public class LoginUserImpl implements Command {
+public class DeleteUserImpl implements Command {
 
     /**
-     * @param params [LOGIN_USER], [idUser=..], [login=..], [password=..]
+     * @param params [DELETE_USER], [idUser=..], [login=..], [password=..]
      */
-    @SuppressWarnings("all")
     @Override
     public String execute(String[] params) {
 
-        int idUser = -1;
+        int id = -1;
         String login = null;
         String password = null;
 
@@ -24,7 +23,8 @@ public class LoginUserImpl implements Command {
 
             switch (elements[0]) {
                 case "idUser":
-                    idUser = Integer.parseInt(elements[1]);
+                    id = Integer.parseInt(elements[1]);
+                    break;
                 case "login":
                     login = elements[1];
                     break;
@@ -33,21 +33,20 @@ public class LoginUserImpl implements Command {
             }
         }
 
-        if (idUser == -1 || login == null || password == null)
+        if (id == -1 || login == null || password == null)
             return "1 ERROR";
 
-        String responce;
+        User user = new User(id, login, password);
 
+        String response;
         try {
-            if (ServiceFactory.getInstance().getUserService().logIn(new User(idUser, login, password)))
-                responce = "0 OK";
-            else responce = "1 ERROR";
+            ServiceFactory.getInstance().getUserService().deleteUser(user);
+            response = "0 OK";
         } catch (ServiceException e) {
-            // log
             e.printStackTrace();
-            responce = "1 Error";
+            response = "1 ERROR";
         }
 
-        return responce;
+        return response;
     }
 }

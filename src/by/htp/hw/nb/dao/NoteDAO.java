@@ -3,8 +3,6 @@ package by.htp.hw.nb.dao;
 import by.htp.hw.nb.dao.exception.DAOException;
 import by.htp.hw.nb.entity.Note;
 
-import java.io.IOException;
-import java.util.Calendar;
 import java.util.List;
 
 public interface NoteDAO {
@@ -15,5 +13,7 @@ public interface NoteDAO {
 
     void remove(int idNote, int idUser) throws DAOException;
 
-    void edit(int idNote, int idUser, String text, String date) throws DAOException;
+    void edit(int idNote, int idUser, String text) throws DAOException;
+
+    List<String> getAllNotes(int idUser) throws DAOException;
 }

@@ -5,10 +5,10 @@ import by.htp.hw.nb.entity.User;
 import by.htp.hw.nb.service.ServiceFactory;
 import by.htp.hw.nb.service.exception.ServiceException;
 
-public class LoginUserImpl implements Command {
+public class LogoutUserImpl implements Command {
 
     /**
-     * @param params [LOGIN_USER], [idUser=..], [login=..], [password=..]
+     * @param params [LOGOUT_USER], [idUser=..], [login=..], [password=..]
      */
     @SuppressWarnings("all")
     @Override
@@ -39,9 +39,8 @@ public class LoginUserImpl implements Command {
         String responce;
 
         try {
-            if (ServiceFactory.getInstance().getUserService().logIn(new User(idUser, login, password)))
-                responce = "0 OK";
-            else responce = "1 ERROR";
+            ServiceFactory.getInstance().getUserService().logOut(new User(idUser, login, password));
+            responce = "0 OK";
         } catch (ServiceException e) {
             // log
             e.printStackTrace();
